@@ -8,6 +8,6 @@ export interface Command {
     aliases?: string[];
     args?: boolean;
     usage?: string;
-    cooldown?: number;
+    cooldown: number;
     execute: (message: Message, args: string[], connection: Connection) => any;
 }

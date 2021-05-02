@@ -8,6 +8,7 @@ const command: Command = {
     name: "init",
     su: true,
     dm: false,
+    cooldown: 3,
     async execute(message, args, connection) {
         const servers = await connection.manager.find(Server, { id: message.guild.id });
         if(servers.length > 0) {

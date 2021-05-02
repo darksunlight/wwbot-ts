@@ -5,6 +5,7 @@ const command: Command = {
     name: "logstatus",
     su: true,
     dm: true,
+    cooldown: 1,
     async execute(message, args, connection) {
         const servers = await connection.getRepository(Server).createQueryBuilder("server").getMany();
         console.log("Loaded servers: ", servers);

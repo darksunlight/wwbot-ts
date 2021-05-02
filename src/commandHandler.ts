@@ -42,14 +42,14 @@ const commandHandler = (prefix: string, message: Message, connection: Connection
 
         const now = Date.now();
         const timestamps = cooldowns.get(command.name);
-        const cooldownAmount = (command.cooldown || 1) * 1000;
+        const cooldownAmount = command.cooldown * 1000;
         
         if (timestamps.has(message.author.id)) {
             const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
         
             if (now < expirationTime) {
                 const timeLeft = (expirationTime - now) / 1000;
-                return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+                return message.channel.send(`<@${message.author.id}>, please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
             }
         }        
         timestamps.set(message.author.id, now);
